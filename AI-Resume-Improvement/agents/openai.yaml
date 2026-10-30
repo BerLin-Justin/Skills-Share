@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 简历优化"
+  short_description: "围绕真实问题优化 AI Agent 与后端项目经历，讲清个人动作、技术机制和结果"
+  default_prompt: "请使用 $resume-agent-optimizer 优化以下技术简历项目经历，优先依据原文讲清具体问题或约束，再写个人动作、关键机制与已知结果；保留真实技术、职责和数据，有 JD 时调整重点，并将核实问题放在正文之外。"
