@@ -1,0 +1,24 @@
+digraph FactData
+{
+    graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.55, ranksep=0.55, splines=polyline, fontname="Microsoft YaHei", labelloc=t, fontsize=22];
+    node [shape=box, style="rounded,filled", fillcolor="#FFF3DD", color="#B97716", fontname="Microsoft YaHei", fontsize=18, margin="0.16,0.14"];
+    edge [fontname="Microsoft YaHei", fontsize=14, color="#64748B", arrowsize=0.75];
+
+    label="03b  事实与关系：逐单归属，同源展示";
+    invoice [label="真实票据\n票据标识＋票面金额"];
+    ap [label="应付单\n单据标识＋本单金额"];
+    actual [label="真实出款事实\n付款标识＋实际金额"];
+    allocation [label="票额分配关系\n票据标识＋单据标识\n＋本单含税分配额", fillcolor="#E6F4EA", color="#38845B"];
+    writeoff [label="FK与核销关系\n付款标识＋目标单\n＋本单归属额", fillcolor="#E6F4EA", color="#38845B"];
+    post [label="挂账判断\n仅按本单有效票额", fillcolor="#EAF2FF", color="#3B6EA8"];
+    view [label="合同台账／履约查询\n读取同一实际记录及关系", fillcolor="#EAF2FF", color="#3B6EA8"];
+    invoice -> allocation [label="逐票读有效票额"];
+    ap -> allocation [label="指定目标单"];
+    allocation -> post [label="按单汇总，不重计"];
+    actual -> writeoff [label="核实后写真实FK"];
+    ap -> writeoff [label="保存资金归属", constraint=false];
+    writeoff -> view [label="按同一记录读取"];
+    {rank=same; invoice; ap; actual;}
+    {rank=same; allocation; writeoff;}
+    {rank=same; post; view;}
+}

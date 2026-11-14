@@ -1,0 +1,23 @@
+digraph Payment
+{
+    graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.45, ranksep=0.44, splines=polyline, fontname="Microsoft YaHei", labelloc=t, fontsize=22];
+    node [shape=box, style="rounded,filled", fillcolor="#EAF2FF", color="#3B6EA8", fontname="Microsoft YaHei", fontsize=17, margin="0.16,0.12", penwidth=1.3];
+    edge [fontname="Microsoft YaHei", fontsize=13, color="#64748B", arrowsize=0.75];
+
+    label="02b  付款：批准与真实出款分别成立";
+    posted [label="已挂账应付单", fillcolor="#FFF3DD", color="#B97716"];
+    request [label="经办人提交 FKSQ\n进入付款申请审批"];
+    approved [label="FKSQ是否批准？", shape=diamond, fillcolor="#FFF3DD", color="#B97716"];
+    no [label="未批准／驳回\n不办理FK，不核销", fillcolor="#FDECEC", color="#B84A48"];
+    real [label="批准后办理实际付款\n真实出款是否已核实？", shape=diamond, fillcolor="#FFF3DD", color="#B97716"];
+    wait [label="未出款／失败／未知\n不核销，按事实来源查证", fillcolor="#FDECEC", color="#B84A48"];
+    saved [label="已核实真实出款\n保存FK及核销关系", fillcolor="#E6F4EA", color="#38845B"];
+    query [label="合同台账与履约查询\n读取同一实际记录", fillcolor="#FFF3DD", color="#B97716"];
+    posted -> request;
+    request -> approved;
+    approved -> no [label="否"];
+    approved -> real [label="是"];
+    real -> wait [label="未核实"];
+    real -> saved [label="已核实"];
+    saved -> query;
+}

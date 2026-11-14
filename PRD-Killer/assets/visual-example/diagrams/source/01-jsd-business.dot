@@ -1,0 +1,30 @@
+digraph JSD
+{
+    graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.45, ranksep=0.44, splines=polyline, fontname="Microsoft YaHei", labelloc=t, fontsize=22];
+    node [shape=box, style="rounded,filled", fillcolor="#EAF2FF", color="#3B6EA8", fontname="Microsoft YaHei", fontsize=17, margin="0.16,0.12", penwidth=1.3];
+    edge [fontname="Microsoft YaHei", fontsize=13, color="#64748B", arrowsize=0.75];
+
+    label="01  结算申请：占额、审批与出单";
+    submit [label="申请人\n选择计划、填写金额"];
+    source [label="当前额度依据\n计划余额＋已批收票可用额", fillcolor="#FFF3DD", color="#B97716"];
+    check [label="本次金额≤上限？\n上限取两者较小值", shape=diamond, fillcolor="#FFF3DD", color="#B97716"];
+    denied [label="拒绝提交\n不新增占额，提示余额", fillcolor="#FDECEC", color="#B84A48"];
+    saved [label="系统一并保存\nJSD＋快照＋本单占用", fillcolor="#E6F4EA", color="#38845B"];
+    review [label="审批人处理\n系统复核当前值及事件"];
+    rejected [label="驳回\n仅释放本申请占额", fillcolor="#FDECEC", color="#B84A48"];
+    blocked [label="复核未通过\n不出单，后续处置待确认", style="rounded,filled,dashed", fillcolor="#FDECEC", color="#B84A48"];
+    approved [label="批准且复核通过\n逐计划生成未开始应付单\n转图02办理真实票", fillcolor="#E6F4EA", color="#38845B"];
+    repeat [label="重复批准回调\n返回原结果，不再出单", fillcolor="#E6F4EA", color="#38845B"];
+    { rank=same; submit; source; }
+    { rank=same; denied; saved; }
+    { rank=same; rejected; blocked; approved; }
+    submit -> check [label="计划与金额"];
+    source -> check [label="读取最新额度"];
+    check -> saved [label="满足"];
+    check -> denied [label="超额／并发冲突"];
+    saved -> review [label="进入待审"];
+    review -> rejected [label="驳回"];
+    review -> blocked [label="当前条件失效"];
+    review -> approved [label="批准"];
+    approved -> repeat [label="再次回调"];
+}

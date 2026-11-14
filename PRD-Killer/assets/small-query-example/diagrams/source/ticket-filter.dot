@@ -1,0 +1,33 @@
+digraph TicketFilter
+{
+    graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.45, ranksep=0.35, splines=polyline, fontname="Microsoft YaHei", fontsize=18, labelloc=t, label="可选状态筛选：先限定本人和状态，再取一页"];
+    node [shape=box, style="rounded,filled", fontname="Microsoft YaHei", fontsize=17, margin="0.18,0.12", penwidth=1.3, fontcolor="#172554"];
+    edge [color="#64748b", fontname="Microsoft YaHei", fontsize=14, arrowsize=0.7];
+
+    ui [label="工单列表【新增筛选】\n单选 OPEN / CLOSED；清除表示省略\n切换或清除 → afterId=0", fillcolor="#eaf2ff", color="#3b6ea8"];
+    auth [label="可信登录中间件【复用】\nGET /api/tickets\n从登录态取得 current_user_id", fillcolor="#f1f5f9", color="#64748b"];
+    valid [label="HTTP 适配层【新增状态校验】\n仅允许省略 / OPEN / CLOSED\n既有 afterId、limit 校验保持", fillcolor="#e6f4ea", color="#38845b", fontcolor="#14532d"];
+    handler [label="handle_list_tickets【调整】\n接收并透传可选 status\ncurrent_user_id 不接受查询参数覆盖", fillcolor="#e6f4ea", color="#38845b", fontcolor="#14532d"];
+    query [label="list_tickets【调整，单表参数化查询】\nWHERE owner_id=? AND id>?\n有 status 时追加 AND status=?\nORDER BY id ASC LIMIT ?", fillcolor="#e6f4ea", color="#38845b", fontcolor="#14532d"];
+    db [label="SQLite · tickets【复用，只读】\n历史 status 可为 null\n现有索引 (owner_id, id)", fillcolor="#fff3dd", color="#b97716", fontcolor="#7c2d12"];
+    success [label="HTTP 200 · OK【复用】\ndata=记录数组；无匹配 []\n字段及成功信封保持", fillcolor="#eaf2ff", color="#3b6ea8"];
+    unauthorized [label="未登录 → HTTP 401\nUNAUTHENTICATED\n错误 data=null", fillcolor="#fdecec", color="#b84a48", fontcolor="#7f1d1d"];
+    invalid [label="非法 status → HTTP 400\nINVALID_ARGUMENT\n空串 / 字符串 null / open 等", fillcolor="#fdecec", color="#b84a48", fontcolor="#7f1d1d"];
+    failure [label="查询异常 → HTTP 500\nQUERY_FAILED\n不能返回成功空数组", fillcolor="#fdecec", color="#b84a48", fontcolor="#7f1d1d"];
+    legend [shape=plaintext, label="实线：已确认调用 / 数据返回；【新增/调整/复用】：本次改动\n前端、HTTP适配层未提供源码，需定位文件；无写入、无新服务", fontsize=14, fontcolor="#475569", fillcolor="white", color="white"];
+
+    ui -> auth [label="status（可省略）、afterId、limit"];
+    auth -> valid [label="已登录：可信用户 ID"];
+    auth -> unauthorized [label="未登录"];
+    valid -> handler [label="合法：状态或省略"];
+    valid -> invalid [label="非法：拒绝查询"];
+    handler -> query [label="可信身份 + 已校验参数"];
+    db -> query [label="读取本人匹配记录"];
+    query -> success [label="筛选 → id 升序 → limit"];
+    query -> failure [label="执行失败"];
+    success -> legend [style=invis];
+
+    { rank=same; auth; unauthorized; }
+    { rank=same; valid; invalid; }
+    { rank=same; db; query; failure; }
+}

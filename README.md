@@ -6,6 +6,7 @@
 | Skill | 适用场景 | 入口 |
 | --- | --- | --- |
 | AI 简历优化 | 技术简历锐评、项目经历改写、岗位 JD 对齐与面试追问准备 | [浏览文件夹](./AI-Resume-Improvement/) · [查看 Skill](./AI-Resume-Improvement/SKILL.md) |
+| PRD-Killer | 以图为主梳理需求，独立接口契约、可勾选开发清单及本地图示渲染 | [使用说明](./PRD-Killer/README.md) · [查看 Skill](./PRD-Killer/SKILL.md) |
 
 ## AI 简历优化
 
@@ -27,3 +28,23 @@ $resume-agent-optimizer 帮我优化下面的项目经历，先讲清具体问�
 ```text
 $resume-agent-optimizer 根据下面的岗位 JD 优化这段项目经历，只输出简历正文。
 ```
+
+## PRD-Killer 需求图解与研发交接
+
+把长篇PRD整理成开发者能快速理解的业务流程、数据流转、关键时序和技术架构图，配少量规则与原因说明。研发交接默认另交可勾选的开发顺序清单；涉及关键调用或接口变更时，接口契约也单独成文。文档相互链接，后续梳理保留已有任务进度。
+
+安装后可使用：
+
+```text
+$prd-killer 分析这份PRD，以图为主，分别交付需求图解、关键接口契约和可勾选开发顺序清单。
+```
+
+附带npm CLI用于安装Skill及本地DOT渲染。克隆本仓库后，从仓库根目录执行：
+
+```bash
+cd PRD-Killer
+npm ci
+npm run skill:install
+```
+
+更多安装、渲染、测试及发布前后用法见 [PRD-Killer README](./PRD-Killer/README.md)。npm配置就绪不代表包已发布到npm registry，公网npx用法以该项目说明为准。

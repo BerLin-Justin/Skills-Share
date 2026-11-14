@@ -1,0 +1,22 @@
+digraph SettlementData
+{
+    graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.55, ranksep=0.55, splines=polyline, fontname="Microsoft YaHei", labelloc=t, fontsize=22];
+    node [shape=box, style="rounded,filled", fillcolor="#FFF3DD", color="#B97716", fontname="Microsoft YaHei", fontsize=18, margin="0.16,0.14"];
+    edge [fontname="Microsoft YaHei", fontsize=14, color="#64748B", arrowsize=0.75];
+
+    label="03  结算数据：当前值、占用与提交快照";
+    current [label="当前额度输入\n计划余额／已批票据申请额度"];
+    settle [label="结算处理\n提交和审批均复核当前值", fillcolor="#E6F4EA", color="#38845B"];
+    jsd [label="JSD＋占额明细\n申请标识／计划标识／金额"];
+    snapshot [label="提交快照\n申请时内容，不随后续覆盖"];
+    ap [label="应付单\n来源JSD＋付款计划\n初始未开始"];
+    detail [label="JSD详情\n读取历史申请快照", fillcolor="#EAF2FF", color="#3B6EA8"];
+    current -> settle [label="读取当前值"];
+    settle -> jsd [label="写本申请及占用"];
+    settle -> snapshot [label="提交时固化"];
+    jsd -> ap [label="批准明细出单"];
+    snapshot -> detail [label="按申请读取"];
+    {rank=same; current; settle;}
+    {rank=same; jsd; snapshot;}
+    {rank=same; ap; detail;}
+}

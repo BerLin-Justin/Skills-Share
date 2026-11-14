@@ -1,0 +1,51 @@
+{
+  "name": "prd-killer",
+  "version": "0.1.0",
+  "description": "以图为主的PRD研发交接Skill，包含独立接口契约、可勾选开发清单和本地图示渲染工具。",
+  "type": "module",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BerLin-Justin/Skills-Share.git",
+    "directory": "PRD-Killer"
+  },
+  "homepage": "https://github.com/BerLin-Justin/Skills-Share/tree/main/PRD-Killer",
+  "bugs": {
+    "url": "https://github.com/BerLin-Justin/Skills-Share/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "prd-killer": "bin/prd-killer.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "bin/",
+    "scripts/",
+    "agents/",
+    "references/",
+    "assets/",
+    "evals/"
+  ],
+  "scripts": {
+    "start": "node bin/prd-killer.mjs",
+    "skill:install": "node bin/prd-killer.mjs install",
+    "render": "node bin/prd-killer.mjs render",
+    "test": "node --test evals/cli.test.mjs evals/render-diagrams.test.mjs",
+    "pack:check": "npm pack --dry-run",
+    "prepublishOnly": "npm test"
+  },
+  "dependencies": {
+    "@viz-js/viz": "3.25.0",
+    "sharp": "0.35.5"
+  },
+  "keywords": [
+    "prd",
+    "ai-skill",
+    "requirements",
+    "diagram",
+    "codex",
+    "graphviz"
+  ]
+}
