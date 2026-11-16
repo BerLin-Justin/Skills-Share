@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1164" viewBox="0 0 1100 1164" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="1164" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 07｜结果恢复：超时、重复通知与业务补发</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">候选关键时序｜时间向下；实线＝调用／动作，虚线＝返回；事务仅覆盖本系统</text>
+<rect x="23" y="112" width="204" height="62" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="125.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">银行／适配</text>
+<line x1="125" y1="174" x2="125" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<rect x="298" y="112" width="204" height="62" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="400.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">结果归并职责</text>
+<line x1="400" y1="174" x2="400" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<rect x="573" y="112" width="204" height="62" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="675.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">持久化职责</text>
+<line x1="675" y1="174" x2="675" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<rect x="848" y="112" width="204" height="62" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="950.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">业务侧</text>
+<line x1="950" y1="174" x2="950" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<polyline points="125,220 400,220" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="262.5" y="207" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">01 回调（若有）或原请求查证结果</text>
+<polyline points="400,294 675,294" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="281" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">02 核验真实性、账户归属、金额、币种、关联</text>
+<polyline points="675,368 400,368" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="537.5" y="355" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">03 重复证据返回既有处理结果；冲突待核验</text>
+<polyline points="400,442 675,442" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="429" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">04 有效新终态：提交结果 + 生效与待投递记录</text>
+<polyline points="400,516 125,516" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="262.5" y="503" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">05 回调协议要求的确认：持久化成功之后</text>
+<polyline points="400,590 950,590" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="675.0" y="577" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">06 跨系统时投递同一结果；无需预设消息队列</text>
+<polyline points="950,664 998,664 998,686 950,686" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="985" y="652" font-size="17" text-anchor="end" fill="#18304B" font-weight="normal">07 按结果标识防重后更新应收／待付</text>
+<polyline points="950,738 400,738" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="675.0" y="725" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">08 确认已应用／返回既有结果</text>
+<polyline points="400,812 675,812" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="799" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">09 记录投递完成；超时保留原投递重试</text>
+<polyline points="400,886 125,886" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="262.5" y="873" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">10 未明分支：查原请求；不可盲目重放</text>
+<polyline points="125,960 400,960" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="262.5" y="947" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">11 查无记录未必未受理：按 Q01／Q04 查证</text>
+<rect x="35" y="1046" width="1030" height="62" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="550.0" y="1083.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">同库可合并本地提交；跨系统才需可恢复投递。相反终态或不匹配证据进入差异处理。</text>
+<text x="35" y="1142" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">说明：候选步骤需经评审确认；银行回调、查单和重放能力须按实际协议核实</text>
+</svg>

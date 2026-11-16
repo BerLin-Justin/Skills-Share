@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1060" viewBox="0 0 1100 1060" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="1060" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 10｜候选逻辑架构：职责划分，待工程核实</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">没有支付工程或银行协议依据｜逻辑职责不代表独立微服务；新增／复用／调整待扫描</text>
+<rect x="40" y="125" width="1020" height="85" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="550.0" y="160.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">业务入口／收付查询／财务差异处理</text>
+<text x="550.0" y="188.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">展示当前进度、明确失败、结果待确认和后续动作</text>
+<polyline points="270,210 270,290" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="207.0" y="239" width="126" height="23" rx="3" fill="white"/>
+<text x="270" y="255" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">提交收款／查询</text>
+<polyline points="810,210 810,290" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="747.0" y="239" width="126" height="23" rx="3" fill="white"/>
+<text x="810" y="255" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">提交付款／查询</text>
+<rect x="40" y="290" width="480" height="105" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="280.0" y="335.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">收款职责</text>
+<text x="280.0" y="363.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">应收关联、收款单、客户操作衔接</text>
+<rect x="580" y="290" width="480" height="105" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="820.0" y="335.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">付款职责</text>
+<text x="820.0" y="363.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">待付约束、收款人快照、付款单</text>
+<rect x="40" y="485" width="480" height="115" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="280.0" y="521.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">共同控制：授权／防重／结果归并</text>
+<text x="280.0" y="549.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">状态映射、可恢复业务投递</text>
+<text x="280.0" y="577.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">复用现有能力优先，边界待核实</text>
+<rect x="580" y="485" width="480" height="115" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="820.0" y="521.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">银行适配职责</text>
+<text x="820.0" y="549.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">认证／签验／发送／查证／可选回调</text>
+<text x="820.0" y="577.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">协议能力以选定银行为准</text>
+<polyline points="280,395 280,485" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="225.0" y="430" width="110" height="23" rx="3" fill="white"/>
+<text x="280" y="446" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">调用共同规则</text>
+<polyline points="810,395 810,440 420,440 420,485" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<polyline points="520,545 580,545" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="527.0" y="509" width="46" height="23" rx="3" fill="white"/>
+<text x="550" y="525" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">调用</text>
+<rect x="40" y="705" width="480" height="115" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="280.0" y="741.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">数据归属：本系统业务记录</text>
+<text x="280.0" y="769.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">收付单／请求快照／结果证据</text>
+<text x="280.0" y="797.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">投递记录／对账差异／操作审计</text>
+<rect x="580" y="705" width="480" height="115" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="820.0" y="741.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">外部：选定银行与银行账户</text>
+<text x="820.0" y="769.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">执行指令、返回交易事实</text>
+<text x="820.0" y="797.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">查单／通知／账单能力待确认</text>
+<polyline points="280,600 280,705" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="225.0" y="641" width="110" height="23" rx="3" fill="white"/>
+<text x="280" y="657" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">读写本地记录</text>
+<polyline points="820,600 820,705" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="757.0" y="641" width="126" height="23" rx="3" fill="white"/>
+<text x="820" y="657" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">按真实协议交互</text>
+<rect x="40" y="900" width="1020" height="90" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="550.0" y="938.15" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">对账与恢复职责：读取银行事实和本地记录 → 差异项 → 受控处理</text>
+<text x="550.0" y="965.15" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">安全配置／证书保管／监测记录接入工程已有设施，不预设中间件</text>
+<polyline points="280,820 280,900" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="257.0" y="854" width="46" height="23" rx="3" fill="white"/>
+<text x="280" y="870" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">读取</text>
+<polyline points="820,820 820,900" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="781.0" y="854" width="78" height="23" rx="3" fill="white"/>
+<text x="820" y="870" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">取得事实</text>
+<text x="35" y="1038" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">颜色表示职责语义；全部为候选逻辑分工。没有代码证据，不声称现有组件可复用。</text>
+</svg>

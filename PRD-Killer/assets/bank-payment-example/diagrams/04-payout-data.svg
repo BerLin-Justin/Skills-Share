@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="980" viewBox="0 0 1100 980" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="980" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 04｜付款数据：待付约束、账户快照与出款事实</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">候选业务实体，非数据库表名｜付款申请、银行出款、收款方到账分别保留语义</text>
+<rect x="40" y="125" width="335" height="110" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="207.5" y="159.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">待付义务：业务侧权威</text>
+<text x="207.5" y="187.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">业务标识、应付额、币种</text>
+<text x="207.5" y="215.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">已成功额与在途申请需区分</text>
+<rect x="650" y="125" width="400" height="110" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="850.0" y="159.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">付款单：归属待付义务</text>
+<text x="850.0" y="187.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">企业出款账户／收款人快照</text>
+<text x="850.0" y="215.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">申请金额、币种、操作身份</text>
+<polyline points="375,180 650,180" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="431.0" y="144" width="158" height="23" rx="3" fill="white"/>
+<text x="510" y="160" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">校验待付范围并关联</text>
+<rect x="650" y="340" width="400" height="115" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="850.0" y="376.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">防重与在途控制（建议）</text>
+<text x="850.0" y="404.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">按业务义务串行／条件校验</text>
+<text x="850.0" y="432.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">同键异参拒绝；不预设冻结</text>
+<polyline points="850,235 850,340" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="714.0" y="271" width="222" height="23" rx="3" fill="white"/>
+<text x="825" y="287" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">保存后生成稳定银行请求标识</text>
+<rect x="40" y="340" width="335" height="115" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="207.5" y="376.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">银行付款执行与交易证据</text>
+<text x="207.5" y="404.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">银行交易标识、执行状态</text>
+<text x="207.5" y="432.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">余额校验／实际扣账由银行</text>
+<polyline points="650,395 375,395" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="431.0" y="359" width="158" height="23" rx="3" fill="white"/>
+<text x="510" y="375" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">提交快照／查原指令</text>
+<rect x="40" y="570" width="390" height="120" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="235.0" y="609.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">结果证据 + 交易明细</text>
+<text x="235.0" y="637.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">指令金额、实扣额、手续费</text>
+<text x="235.0" y="665.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">未知值留空，不按零处理</text>
+<polyline points="205,455 205,570" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="110.0" y="502" width="190" height="23" rx="3" fill="white"/>
+<text x="205" y="518" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">取得证据（能力待确认）</text>
+<rect x="650" y="570" width="400" height="120" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="850.0" y="609.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">结果归并：绑定原付款单</text>
+<text x="850.0" y="637.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">核验出入账户、金额和币种</text>
+<text x="850.0" y="665.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">成功后只减少一次待付义务</text>
+<polyline points="430,630 650,630" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="461.0" y="594" width="158" height="23" rx="3" fill="white"/>
+<text x="540" y="610" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">校验证据与重复交易</text>
+<rect x="200" y="795" width="700" height="105" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="550.0" y="840.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">写付款结果 + 业务生效记录 → 待付／付款查询</text>
+<text x="550.0" y="868.5" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">银行后续退回属于新事实，不能覆盖原成功记录</text>
+<polyline points="850,690 850,740 550,740 550,795" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="565.0" y="712" width="190" height="23" rx="3" fill="white"/>
+<text x="660" y="728" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">写结果与可追溯业务影响</text>
+<text x="35" y="958" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">实线标数据读写；本地并发控制不等于银行账户冻结；手续费、在途约束见 Q03／Q05</text>
+</svg>

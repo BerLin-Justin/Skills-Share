@@ -43,11 +43,35 @@ test('install copies complete Skill resources and refuses to replace existing co
     const target = path.join(temporary, 'skill with spaces');
     const installed = run(['install', '--target', target]);
     assert.equal(installed.status, 0, installed.stderr);
-    for (const relative of ['SKILL.md', 'README.md', 'agents/openai.yaml', 'references/output-template.md',
-        'references/example-confirmed-checklist.md', 'assets/small-query-example/diagrams/ticket-filter.png',
-        'scripts/render-diagrams.mjs', 'evals/cases.md'])
+    // 当前示例需要随安装完整复制，避免入口文档存在但配套材料缺失。
+    for (const relative of [
+        'SKILL.md',
+        'README.md',
+        'agents/openai.yaml',
+        'references/output-template.md',
+        'references/需求图解.md',
+        'references/关键接口契约.md',
+        'references/开发顺序清单.md',
+        'assets/bank-payment-example/diagrams/01-collection-flow.png',
+        'scripts/render-diagrams.mjs',
+        'evals/cases.md'
+    ])
     {
         assert.deepEqual(await fs.readFile(path.join(target, relative)), await fs.readFile(path.join(root, relative)));
+    }
+    // 验证安装后的相对链接仍可定位，覆盖示例跨目录迁移造成的断链风险。
+    for (const name of ['需求图解.md', '关键接口契约.md', '开发顺序清单.md'])
+    {
+        const document = path.join(target, 'references', name);
+        const content = await fs.readFile(document, 'utf8');
+        for (const match of content.matchAll(/!?\[[^\]]*\]\(([^)]+)\)/g))
+        {
+            const link = match[1];
+            if (!link.startsWith('http') && !link.startsWith('#'))
+            {
+                await fs.access(path.resolve(path.dirname(document), link));
+            }
+        }
     }
     await fs.writeFile(path.join(target, 'SKILL.md'), 'user-customized-skill');
     const refused = run(['install', '--target', target]);

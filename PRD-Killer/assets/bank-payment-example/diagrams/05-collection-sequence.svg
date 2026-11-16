@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1164" viewBox="0 0 1100 1164" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="1164" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 05｜收款时序：先留痕，再调用银行</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">候选关键时序｜时间向下；实线＝调用／动作，虚线＝返回；事务仅覆盖本系统</text>
+<rect x="23" y="112" width="204" height="62" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="125.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">客户／业务方</text>
+<line x1="125" y1="174" x2="125" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<rect x="298" y="112" width="204" height="62" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="400.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">收款职责</text>
+<line x1="400" y1="174" x2="400" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<rect x="573" y="112" width="204" height="62" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="675.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">持久化职责</text>
+<line x1="675" y1="174" x2="675" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<rect x="848" y="112" width="204" height="62" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="950.0" y="149.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">银行适配／银行</text>
+<line x1="950" y1="174" x2="950" y2="1029" stroke="#A7B2C2" stroke-dasharray="5 6"/>
+<polyline points="125,220 400,220" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="262.5" y="207" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">01 提交收款意图 + 稳定业务请求标识</text>
+<polyline points="400,294 675,294" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="281" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">02 校验应收与防重；同键异参拒绝</text>
+<polyline points="675,368 400,368" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="537.5" y="355" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">03 已有单则结束；否则存快照（本地提交 A）</text>
+<polyline points="400,442 675,442" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="429" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">04 记录可恢复的待发送意图与银行请求标识</text>
+<polyline points="400,516 950,516" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="675.0" y="503" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">05 提交收款请求（不在本地事务内）</text>
+<polyline points="950,590 400,590" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="675.0" y="577" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">06 受理／终态／超时，分别归类</text>
+<polyline points="400,664 675,664" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="651" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">07 保存银行关联证据；未知不得写失败</text>
+<polyline points="400,738 125,738" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="262.5" y="725" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">08 返回原收款单及当前状态／必要客户操作</text>
+<polyline points="950,812 400,812" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="675.0" y="799" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">09 后续结果：查单回复／回调（若支持）</text>
+<polyline points="400,886 675,886" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<text x="537.5" y="873" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">10 核验证据；一次归并与业务生效（提交 B）</text>
+<polyline points="400,960 125,960" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="262.5" y="947" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">11 查询得到有效结果；跨系统通知见图 07</text>
+<rect x="35" y="1046" width="1030" height="62" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="550.0" y="1083.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">客户跳转或点击“已支付”不能作为成功依据；客户授权交互由 Q02 决定。</text>
+<text x="35" y="1142" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">说明：候选步骤需经评审确认；银行回调、查单和重放能力须按实际协议核实</text>
+</svg>

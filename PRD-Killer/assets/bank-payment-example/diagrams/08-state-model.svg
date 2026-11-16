@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1080" viewBox="0 0 1100 1080" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="1080" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 08｜状态：支付进度与对账结论各自记录</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">以下为建议状态语义，非银行状态码｜收款与付款独立建模、独立映射</text>
+<text x="270" y="132" font-size="23" text-anchor="middle" fill="#18304B" font-weight="bold">收款单</text>
+<rect x="60" y="160" width="420" height="76" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="270.0" y="204.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">待提交：本地已留存，尚无银行确认</text>
+<rect x="60" y="300" width="420" height="95" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="270.0" y="340.8" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">处理中：已受理，尚无最终结果</text>
+<text x="270.0" y="366.8" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">结果待确认：超时／证据不足</text>
+<polyline points="270,236 270,300" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="191.0" y="257" width="158" height="23" rx="3" fill="white"/>
+<text x="270" y="273" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">银行受理／结果未明</text>
+<rect x="60" y="460" width="185" height="100" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="152.5" y="503.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">成功</text>
+<text x="152.5" y="528.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">可信终态 + 匹配</text>
+<rect x="295" y="460" width="185" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="387.5" y="503.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">失败</text>
+<text x="387.5" y="528.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">银行明确拒绝</text>
+<polyline points="170,395 152,460" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="111.0" y="418" width="78" height="23" rx="3" fill="white"/>
+<text x="150" y="434" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">终态成功</text>
+<polyline points="370,395 387,460" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="351.0" y="418" width="78" height="23" rx="3" fill="white"/>
+<text x="390" y="434" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">终态失败</text>
+<rect x="60" y="610" width="420" height="88" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="270.0" y="647.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">业务含义：只确认一次有效收款</text>
+<text x="270.0" y="673.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">是否实际入账／可用：取决于 Q07</text>
+<text x="820" y="132" font-size="23" text-anchor="middle" fill="#18304B" font-weight="bold">付款单</text>
+<rect x="610" y="160" width="420" height="76" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="820.0" y="204.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">待提交：本地已留存，尚无银行确认</text>
+<rect x="610" y="300" width="420" height="95" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="820.0" y="340.8" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">处理中：已受理，尚无最终结果</text>
+<text x="820.0" y="366.8" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">结果待确认：超时／证据不足</text>
+<polyline points="820,236 820,300" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="741.0" y="257" width="158" height="23" rx="3" fill="white"/>
+<text x="820" y="273" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">银行受理／结果未明</text>
+<rect x="610" y="460" width="185" height="100" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="702.5" y="503.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">成功</text>
+<text x="702.5" y="528.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">可信终态 + 匹配</text>
+<rect x="845" y="460" width="185" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="937.5" y="503.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">失败</text>
+<text x="937.5" y="528.45" font-size="17" text-anchor="middle" fill="#18304B" font-weight="normal">银行明确拒绝</text>
+<polyline points="720,395 702,460" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="661.0" y="418" width="78" height="23" rx="3" fill="white"/>
+<text x="700" y="434" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">终态成功</text>
+<polyline points="920,395 937,460" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="901.0" y="418" width="78" height="23" rx="3" fill="white"/>
+<text x="940" y="434" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">终态失败</text>
+<rect x="610" y="610" width="420" height="88" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="820.0" y="647.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">业务含义：只确认一次有效付款</text>
+<text x="820.0" y="673.3" font-size="18" text-anchor="middle" fill="#18304B" font-weight="normal">扣账／受益人到账：取决于 Q07</text>
+<rect x="60" y="755" width="970" height="100" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="545.0" y="798.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">独立对账状态：待对账 → 一致／差异 → 已处理（保留证据）</text>
+<text x="545.0" y="826.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">支付成功不自动代表对账一致；差异不能直接覆盖支付状态</text>
+<rect x="60" y="900" width="970" height="95" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="545.0" y="940.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">银行后续退回／冲正：保留原交易，另建关联事实并核验业务影响</text>
+<text x="545.0" y="967.65" font-size="19" text-anchor="middle" fill="#18304B" font-weight="normal">取消、退款、撤销的可用能力均未确认；不进入本期可用主链</text>
+<text x="35" y="1058" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">实线：建议正常迁移；相反终态、乱序或金额不符转人工核验，不因消息到达顺序改写事实</text>
+</svg>

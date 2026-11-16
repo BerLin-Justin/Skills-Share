@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1018" viewBox="0 0 1100 1018" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="1018" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 09｜对账：发现差异后如何形成可追溯结论</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">候选业务流程｜已确认收款、付款均需覆盖；银行能力与业务细则待确认</text>
+<rect x="65" y="120" width="480" height="94" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="305.0" y="160.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">对账职责：取得银行账单／流水</text>
+<text x="305.0" y="188.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">接口／文件／人工导入能力待定 Q08</text>
+<polyline points="305,214 305,258" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="258" width="480" height="94" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="305.0" y="298.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">校验完整性、重复批次与账期</text>
+<text x="305.0" y="326.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">保留原件、来源及获取结果</text>
+<polyline points="305,352 305,396" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="396" width="480" height="94" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="305.0" y="436.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">按银行交易标识关联本地收付单</text>
+<text x="305.0" y="464.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">核对方向、账户、金额、币种</text>
+<polyline points="305,490 305,534" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="351.0" y="502" width="78" height="23" rx="3" fill="white"/>
+<text x="390" y="518" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">存在差异</text>
+<rect x="65" y="534" width="480" height="94" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="305.0" y="560.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">差异：生成待核验项与证据</text>
+<text x="305.0" y="588.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">缺单／金额币种不符／疑似重复</text>
+<text x="305.0" y="616.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">费用差／后续退回分别保留</text>
+<polyline points="305,628 305,672" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="672" width="480" height="94" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="305.0" y="712.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">业务／财务核验银行及业务事实</text>
+<text x="305.0" y="740.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">必要更正走受控规则，不直接改成功</text>
+<polyline points="305,766 305,810" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="810" width="480" height="94" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="305.0" y="850.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">保存处理人、原因、前后值和证据</text>
+<text x="305.0" y="878.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">未处理项持续可见；重跑不重复生效</text>
+<rect x="705" y="120" width="340" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="875.0" y="163.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">下载失败／无数据／账单未就绪</text>
+<text x="875.0" y="191.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">分别展示；不能按零交易处理</text>
+<polyline points="545,167 705,167" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="586.0" y="135" width="78" height="23" rx="3" fill="white"/>
+<text x="625" y="151" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">来源异常</text>
+<rect x="705" y="396" width="340" height="100" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="875.0" y="439.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">一致：保存独立对账结论</text>
+<text x="875.0" y="467.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">本批核对结束；留存依据</text>
+<polyline points="545,443 705,443" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="586.0" y="411" width="78" height="23" rx="3" fill="white"/>
+<text x="625" y="427" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">全部匹配</text>
+<rect x="705" y="672" width="340" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="875.0" y="715.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">证据不足：继续待核验</text>
+<text x="875.0" y="743.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">不得以人工确认凭空创造收付</text>
+<polyline points="545,719 705,719" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="586.0" y="687" width="78" height="23" rx="3" fill="white"/>
+<text x="625" y="703" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">不能闭环</text>
+<text x="35" y="996" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">蓝：业务　绿：处理　橙：数据　红：异常　灰：银行／外部；虚框：候选条件</text>
+</svg>

@@ -36,7 +36,7 @@ description: "Use when 分析或梳理 PRD、原型、截图、需求文档，�
 6. **独立开发清单**：面向研发的PRD梳理默认按 [交付与验收](references/delivery-and-validation.md) 另交《开发顺序清单》，不必等用户再要清单或排期。按依赖排序，使用Markdown复选框，写清任务编号、动作、前置、完成条件及关联依据；无工程进度证据时不标已完成，已有清单保留编号、勾选与备注。
 7. **检查再交付**：实际打开每张图检查中文、字号、连线、分支和截断；跨图核对同一对象与状态。正文图片、配套文档链接须能打开，各文档的范围、版本和规则一致；检查清单依赖及完成标记，不能只交代码围栏或引用不存在的图片。
 
-写作参照：[完整链路图解](references/example-visual-handoff.md)、[小查询改动](references/example-confirmed-handoff.md) 及其 [独立契约](references/example-confirmed-contract.md)、[开发清单](references/example-confirmed-checklist.md)。示例只展示分析和画法，不能将其中业务规则套到其他需求。清单及验收按 [交付与验收](references/delivery-and-validation.md) 组织。
+写作参照：[银行收付款需求图解](references/需求图解.md)、[关键接口契约](references/关键接口契约.md)、[开发顺序清单](references/开发顺序清单.md)。三份文档展示同一需求如何分工交付；只借鉴分析和画法，不将示例的银行规则、图数或任务数量套到其他需求。清单及验收按 [交付与验收](references/delivery-and-validation.md) 组织。
 
 ## 图文组织
 

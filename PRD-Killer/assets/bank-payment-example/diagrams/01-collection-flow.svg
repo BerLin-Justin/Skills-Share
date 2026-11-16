@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1018" viewBox="0 0 1100 1018" font-family="Microsoft YaHei, sans-serif">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65758B"/></marker></defs>
+<rect width="1100" height="1018" fill="#FFFFFF"/>
+<text x="35" y="43" font-size="27" text-anchor="start" fill="#18304B" font-weight="bold">图 01｜收款：从业务应收到银行结果确认</text>
+<text x="35" y="78" font-size="17" text-anchor="start" fill="#63728A" font-weight="normal">候选业务流程｜已确认收款、付款均需覆盖；银行能力与业务细则待确认</text>
+<rect x="65" y="120" width="480" height="94" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="305.0" y="160.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">客户／业务方：选择应收业务</text>
+<text x="305.0" y="188.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">提交收款意图，不信任前端金额</text>
+<polyline points="305,214 305,258" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="258" width="480" height="94" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="305.0" y="298.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">收款职责：核对权限、应收和账户</text>
+<text x="305.0" y="326.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">支付方式／客户授权形式见 Q02</text>
+<polyline points="305,352 305,396" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="396" width="480" height="94" rx="12" fill="#FFF3DF" stroke="#B7791F" stroke-width="1.8" />
+<text x="305.0" y="436.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">保存收款单与请求标识</text>
+<text x="305.0" y="464.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">留存金额、币种、收款账户快照</text>
+<polyline points="305,490 305,534" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="534" width="480" height="94" rx="12" fill="#F0F2F5" stroke="#687587" stroke-width="1.8" />
+<text x="305.0" y="574.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">银行适配：发起本次收款请求</text>
+<text x="305.0" y="602.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">客户必要操作由银行产品决定</text>
+<polyline points="305,628 305,672" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="65" y="672" width="480" height="94" rx="12" fill="#E9F6EF" stroke="#337E58" stroke-width="1.8" />
+<text x="305.0" y="712.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">核验银行结果：绑定原收款单</text>
+<text x="305.0" y="740.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">受理／处理中：继续等待与查证</text>
+<polyline points="305,766 305,810" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="351.0" y="778" width="78" height="23" rx="3" fill="white"/>
+<text x="390" y="794" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">终态成功</text>
+<rect x="65" y="810" width="480" height="94" rx="12" fill="#EAF2FF" stroke="#396DA7" stroke-width="1.8" />
+<text x="305.0" y="850.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">终态成功且金额／币种匹配</text>
+<text x="305.0" y="878.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">收款成功只对业务生效一次</text>
+<rect x="705" y="258" width="340" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="875.0" y="301.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">校验不通过：拒绝请求</text>
+<text x="875.0" y="329.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">提示原因；不调用银行</text>
+<polyline points="545,305 705,305" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="594.0" y="273" width="62" height="23" rx="3" fill="white"/>
+<text x="625" y="289" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">不通过</text>
+<rect x="705" y="534" width="340" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="875.0" y="563.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">请求超时／通信中断</text>
+<text x="875.0" y="591.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">结果待确认；查证原请求</text>
+<text x="875.0" y="619.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">禁止换新请求重复收款</text>
+<polyline points="545,581 705,581" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="586.0" y="549" width="78" height="23" rx="3" fill="white"/>
+<text x="625" y="565" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">结果未明</text>
+<rect x="705" y="672" width="340" height="100" rx="12" fill="#FDEDED" stroke="#B34B4B" stroke-width="1.8" />
+<text x="875.0" y="701.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">明确失败：保留失败证据</text>
+<text x="875.0" y="729.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">待确认：能否重新发起 Q04</text>
+<text x="875.0" y="757.0" font-size="20" text-anchor="middle" fill="#18304B" font-weight="normal">金额不符：进入差异处理</text>
+<polyline points="545,719 705,719" fill="none" stroke="#65758B" stroke-width="1.7" marker-end="url(#arrow)" />
+<rect x="578.0" y="687" width="94" height="23" rx="3" fill="white"/>
+<text x="625" y="703" font-size="16" text-anchor="middle" fill="#18304B" font-weight="normal">失败／不符</text>
+<text x="35" y="996" font-size="14" text-anchor="start" fill="#68768B" font-weight="normal">蓝：业务　绿：处理　橙：数据　红：异常　灰：银行／外部；虚框：候选条件</text>
+</svg>
