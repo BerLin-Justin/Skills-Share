@@ -1,32 +1,77 @@
 # PRD-Killer
 
-**把长篇PRD整理成开发者能快速看懂的图解交接稿。**
+**把零散需求和长篇 PRD，整理成开发者看图就能理解的交接稿。**
 
-PRD-Killer是一套可复用的AI Skill，附带安装与本地图示渲染CLI。它帮助产品和研发理顺业务流程、数据关系、状态变化及异常分支，以图为主说明“要做什么、为什么做、先做什么”。
+PRD-Killer 是一套面向产品与研发协作的 AI Skill：用业务流程、数据流转、关键时序和技术架构讲清“做什么、数据怎么走、异常怎么办”，再配上独立接口契约和可勾选开发清单。
 
-PRD分析由支持Skill的AI客户端读取本项目的[SKILL.md](SKILL.md)后完成；npm CLI提供资源安装和DOT图示渲染，不包含独立的大模型服务。
+源码位于 [Skills-Share/PRD-Killer](https://github.com/BerLin-Justin/Skills-Share/tree/main/PRD-Killer)。
 
-## 会得到什么
+适合 PRD 梳理、跨角色业务评审和研发交接，也支持从一句尚不完整的需求开始：先整理确定部分，将建议与待确认规则直接标在相关图中。
 
-| 独立文档 | 主要内容 |
-| --- | --- |
-| 需求图解.md | 业务流程、数据流转、关键时序、技术架构，以及少量规则、原因和待确认问题 |
-| 关键接口契约.md | 涉及关键调用或接口变更时，说明输入输出、权限、失败及防重要求；无工程依据时标需求级草案 |
-| 开发顺序清单.md | 默认研发交付，按依赖排序的可勾选任务、完成条件、并行关系及阻塞；更新时保留已有进度 |
+**先看效果：**[银行收付款示例](#银行收付款示例) · **开始使用：**[快速开始](#快速开始) · **了解交付：**[交付内容](#交付内容) · **维护项目：**[渲染与维护](#渲染与维护)
 
-文档相互链接，配套保存真实PNG、SVG和可编辑图源。小需求按实际规模选图，完整复杂需求覆盖业务、数据、时序、架构四种视角；不强制每个需求都画相同数量的图。
+## 银行收付款示例
 
-```markdown
-- [ ] T01 核对现有实现与规则。完成：明确复用点、差异及待确认分支。
-- [ ] T02 实现关键变更。依赖：T01。完成：指定输入得到约定结果。
-- [ ] T03 联调及交付核对。依赖：T02。完成：关键验证有记录，文档与实现同版。
+### 从一句需求开始
+
+```text
+使用 prd-killer 帮我梳理一条调用银行接口的支付链路。
+收款和付款都需要，以 Markdown 格式交付到我指定的目录。
 ```
 
-可查看完整的[图解示例](references/example-visual-handoff.md)，或较小的[查询需求示例](references/example-confirmed-handoff.md)、[接口契约](references/example-confirmed-contract.md)、[开发清单](references/example-confirmed-checklist.md)。
+这句话确认了“接入银行、同时包含收款与付款”，但没有提供银行、产品、工程代码或接口协议。因此，本例输出的是 **V0.1 讨论稿**：分别展开收付链路，把超时查证、防重和对账作为建议基线，将账户主体、客户授权、审批、费用及退款范围保留为待确认。示例不代表银行能力已经核实，也不代表代码已实现。
 
-## 从源码使用
+### 本例应交付什么
 
-需要Node.js 22及以上，以及npm。克隆本仓库后进入PRD-Killer目录执行：
+| 文档 | 主要内容 |
+| --- | --- |
+| `需求图解.md` | 收款与付款分别建模，讲清业务、数据、时序、架构，以及状态、对账、规则和待确认项 |
+| `关键接口契约.md` | 说明发起收付、银行提交、查证、条件回调、业务结果投递及查询的职责、输入输出和失败处理 |
+| `开发顺序清单.md` | 按依赖列出任务、完成条件和阻塞项；没有实现证据的任务保持未勾选 |
+
+以下展示该案例的需求梳理方式，完整文档、图像和图源不在此页提供下载。具体图数和任务数量按实际链路复杂度决定。
+
+### 收款与付款分别梳理
+
+| 关注点 | 收款链路 | 付款链路 |
+| --- | --- | --- |
+| 起点 | 客户或业务方针对应收业务发起收款意图 | 业务方针对待付义务发起付款意图 |
+| 金额与账户 | 核对应收额、币种和收款主体；客户授权方式待银行产品确认 | 核对待付范围、企业出款账户和收款人，并保存不可变快照 |
+| 关键进度 | 本地留存、银行受理、处理中、结果待确认和最终结果分别表达 | 银行受理、实际出款和受益人到账分别确认，不混用成功含义 |
+| 重复与并发 | 同请求返回原单；同一应收业务不同请求的并发约束另行核实 | 同请求防重之外，同一待付义务的不同请求也不能并发超额付款 |
+| 超时恢复 | 保持原收款请求，查证银行结果；不因页面跳转或超时推定成功、失败 | 保持原付款请求，未知结果不自动解除在途约束并另付一笔 |
+| 业务生效 | 银行可信终态与金额、币种匹配后，只影响业务一次 | 经核验的有效付款只减少一次待付义务 |
+| 对账与逆向 | 支付结果和对账结论独立；退款、撤销范围待确认 | 后续退回或冲正保留关联事实，不覆盖原出款证据 |
+
+表中处理方式均为建议基线，不能代替选定银行的协议及业务规则。
+
+### 四类图分别回答什么
+
+| 视角 | 这份银行需求中应讲清的问题 |
+| --- | --- |
+| 业务流程 | 谁在什么条件下发起收付；校验失败、结果未明和明确失败各如何处理 |
+| 数据流转 | 应收／待付、收付申请、银行请求、结果证据和业务生效记录如何关联；谁提供权威事实 |
+| 关键时序 | 本地先留痕再调用银行；重复通知和业务投递如何防重；宕机后如何沿原请求恢复 |
+| 技术架构 | 收款、付款、共同控制、银行适配与对账各自承担什么职责；哪些需要工程核实 |
+
+### 评审时优先确认的边界
+
+- **受理、成功、到账分开：**银行接收指令不一定意味着交易完成，最终成功语义以具体产品协议为准。
+- **未知结果先查证：**网络超时不代表银行失败；安全重放的标识、范围及有效期必须由银行协议支持。
+- **申请与资金事实分开：**申请金额不冒充实际入账金额，手续费和币种精度需单独确认。
+- **建议与事实分开：**未提供银行协议和工程代码时，不编造接口路径、状态码或已有组件，也不默认审批、冻结和退款已可用。
+
+这组示例演示分析与交接方式。以下是仓库已经公开的完整图解及配套文档，可查看实际图文排版和交付结构：
+
+- [完整结算链路图解](references/example-visual-handoff.md)：业务、数据、时序和候选架构的完整图文示例。
+- [小查询改动](references/example-confirmed-handoff.md)：局部需求如何缩小图集和改动范围。
+- [小查询接口契约](references/example-confirmed-contract.md)与[开发清单](references/example-confirmed-checklist.md)：查看独立契约和可勾选任务的写法。
+
+## 快速开始
+
+### 1. 安装 Skill
+
+需要 **Node.js 22 或更高版本**和 npm。在下载或克隆的项目根目录执行：
 
 ```bash
 git clone https://github.com/BerLin-Justin/Skills-Share.git
@@ -36,56 +81,97 @@ npm start -- --help
 npm run skill:install
 ```
 
-默认安装到`CODEX_HOME/skills/prd-killer`；未设置`CODEX_HOME`时使用`~/.codex/skills/prd-killer`。其他支持Skill的客户端可通过`--target`指定它使用的完整Skill目录：
+默认安装到 `CODEX_HOME/skills/prd-killer`；未设置 `CODEX_HOME` 时使用 `~/.codex/skills/prd-killer`。在 Windows 上，通常对应当前用户目录下的 `.codex/skills/prd-killer`。
+
+其他支持 Skill 的客户端，可以指定它使用的完整 Skill 目录：
 
 ```bash
-npm run skill:install -- --target "./output/skills/prd-killer"
+npm run skill:install -- --target "../prd-killer-installed"
 ```
 
-安装器只复制Skill资源，已有目标会拒绝覆盖。升级时先备份原Skill，将新版本装到新目录并核对个人修改。中断或复制失败时明确报错，可能保留部分新资源供检查，不会删除用户原有目录。
+**自定义目标必须位于本项目目录之外，也不能是包含本项目的父目录。** 安装器会拒绝与包源重叠的路径，因此不要从源码根目录安装到 `./output/skills/prd-killer`。目标目录已经存在时也会拒绝覆盖；升级先备份个人修改，再选新的目标目录安装。
 
-安装后，在支持该Skill的AI客户端中提供PRD并发起类似请求：
+### 2. 在 AI 客户端发起需求分析
+
+将 PRD 正文、截图、文档或工程位置交给支持 Skill 的 AI 客户端，再提出请求：
 
 ```text
-请使用 prd-killer 分析这份PRD，只覆盖指定模块。
-以业务流程、数据流转、时序和技术架构图为主。
-分别交付需求图解、关键接口契约和可勾选开发顺序清单，保存到我指定的目录。
+请使用 prd-killer 梳理这份需求，面向研发交接。
+先核实材料和工程依据，以业务流程、数据流转、时序和架构图为主。
+已确认、建议、待确认要区分；没有依据的银行规则和接口不要补造。
+交付需求图解、适用的关键接口契约和可勾选开发顺序清单，
+以 Markdown 保存到：<你的输出目录>。
 ```
 
-输入材料是否可读取决于客户端提供的文件、文档或浏览器能力；本CLI不负责解析DOCX、调用模型或生成完整分析。
+提供的材料越完整，交接越能贴近实际实现。只有一句需求也可以先出讨论稿；补齐银行文档、业务结论或代码后，再更新受影响部分并保留原编号和已有进度。
 
-## npm发布后的npx用法
+### 3. 阅读并确认交付
 
-下面命令要求维护者已将**本项目**以`prd-killer@0.1.0`发布到npm；首次发布前请使用上面的源码方式，或下面的本地tarball方式。若实际发布包名或版本不同，使用对应名称，不能仅凭同名包认定为本项目。
+先用主图核对业务链路、金额和状态，再看待确认问题会阻塞哪些工作。接口如何调用看独立契约；开发先后和完成条件看清单。图示与文档完成后，业务确认、代码实现、银行联调和上线验收仍需分别进行。
 
-```bash
-npx --yes prd-killer@0.1.0 install
-npx --yes prd-killer@0.1.0 install --target "./output/skills/prd-killer"
-npx --yes prd-killer@0.1.0 render --input "./diagrams/source" --output "./diagrams"
+## 交付内容
+
+| 产物 | 用途 | 生成条件 |
+| --- | --- | --- |
+| `需求图解.md` | 讲清业务流程、数据流转、关键时序、候选／实际架构及关键决策 | 按需求范围交付；小改动按需选图 |
+| `关键接口契约.md` | 讲清调用职责、输入输出、权限、失败及防重要求 | 涉及关键调用或接口变更时；无协议或工程依据标需求级草案 |
+| `开发顺序清单.md` | 按依赖列出可勾选任务、完成条件、关联依据及阻塞 | 面向研发的 PRD 梳理默认交付；用户限制范围时遵从 |
+| `diagrams/` | 可直接阅读的 PNG、配套 SVG 与可编辑源 | 主文用相对路径引用，不依赖阅读器解析 Mermaid |
+
+典型目录如下，文件命名可跟随业务和版本调整：
+
+```text
+输出目录/
+├─ 需求图解.md
+├─ 关键接口契约.md
+├─ 开发顺序清单.md
+└─ diagrams/
+   ├─ 01-business.png
+   ├─ 01-business.svg
+   └─ source/
+      └─ 01-business.dot 或 01-business.svg
 ```
 
-也可以全局安装后直接使用命令：
+正文用图说明“做什么与为什么”，契约说明“怎么对接”，清单说明“先做什么及怎样算完成”。三份文档相互链接，共用同一套规则和问题编号；清单不塞进分析或契约的附录。
 
-```bash
-npm install --global prd-killer@0.1.0
-prd-killer --help
-```
+## 能力与使用边界
 
-没有`postinstall`自动复制操作；只有显式执行`install`命令才安装Skill资源。
+| 情况 | 如何处理 |
+| --- | --- |
+| PRD 长、来源分散或多角色协作 | 先理清对象、金额、状态、责任和异常，再按独立业务链拆图 |
+| 有工程代码 | 先读 `AGENTS.md`，核对相似实现、接口与数据归属，注明复用、调整及新增 |
+| 没有代码或银行协议 | 使用候选逻辑架构和需求级契约，不编造数据库表名、HTTP 路径、字段类型或错误码 |
+| 规则缺失或互相冲突 | 继续整理确定部分，在影响结果的分支标待确认及其影响，不代替业务方定规则 |
+| 小查询改动、纯翻译或单字段解释 | 按实际范围处理，不硬凑四类图或三份文档 |
+| 缺少渲染工具 | 优先使用已有本地能力；仍无法渲染则明确交付未渲染源稿及缺失项 |
 
-## 渲染图示
+AI 客户端负责读取 [SKILL.md](SKILL.md)、理解材料并执行分析；npm CLI 负责安装资源和渲染 DOT。文件、在线文档及浏览器能否读取，由客户端已有能力和授权决定。CLI 本身不调用模型，也不独立解析 DOCX 或生成完整 PRD。
 
-先准备DOT源文件，或直接试用仓库里的演示源：
+## 渲染与维护
+
+### 渲染 DOT 图示
+
+安装依赖后，在源码根目录执行：
 
 ```bash
 npm run render -- --input "./assets/small-query-example/diagrams/source/ticket-filter.dot" --output "./output/diagrams" --width 1800
 ```
 
-输出同名SVG和PNG。输入目录只读取一层`.dot`，默认拒绝覆盖；重绘自己生成的图时加`--overwrite`。需要复用外部已安装依赖时可加`--module-dir <node_modules目录>`。
+常用参数：
 
-渲染复用`@viz-js/viz`及`sharp`，安装好依赖后本地运行，不上传业务材料。中文图示需要系统中可显示中文的字体；脚本使用Microsoft YaHei及系统回退字体。生成成功后仍应打开图片检查文字、连线及排版。原生SVG、Mermaid等其他来源的图示按[渲染说明](references/rendering.md)使用相应工具，本命令只接收DOT。
+| 参数 | 含义 |
+| --- | --- |
+| `--input` | 单个 `.dot` 文件或仅扫描一层 `.dot` 的目录 |
+| `--output` | 同名 SVG 和 PNG 的输出目录 |
+| `--width` | PNG 宽度，范围 400—4800，默认 1800 |
+| `--overwrite` | 允许重绘并覆盖指定输出目录中的同名图；默认拒绝覆盖 |
+| `--module-dir` | 复用外部已安装依赖的 `node_modules` 目录 |
 
-## 测试和本地打包
+渲染器使用 `@viz-js/viz` 和 `sharp`；依赖就绪后可本地运行，不上传业务材料。中文需要可用的系统字体，脚本使用 Microsoft YaHei 及系统回退。生成后仍应打开图片检查中文、字号、连线和截断。
+
+原生 SVG、Mermaid 等来源按 [渲染说明](references/rendering.md) 选用现有工具；只接收 DOT 的 CLI 不直接处理这些格式。仓库已有示例可直接查看，无需重新渲染。
+
+### 本地测试与打包
 
 ```bash
 npm test
@@ -93,41 +179,58 @@ npm run pack:check
 npm pack
 ```
 
-测试覆盖CLI安装与已有目录保护、路径转发，以及中文图示、无效整批失败和默认不覆盖等关键边界。目录链接测试需要运行环境允许创建junction或符号链接。
+测试针对安装目录保护、参数转发及中文渲染、无效输入、默认不覆盖等关键边界；目录链接测试依赖环境允许创建 junction 或符号链接。文档和示例更新优先核对相对链接、配图和规则一致性；涉及 CLI 或渲染行为时再执行对应验证。
 
-生成的`prd-killer-0.1.0.tgz`可在发布前通过本地包验证npx入口：
+打包配置包含 Skill 规则、参考、示例资产、图源和 CLI；`node_modules`、生成的 tarball 及 `output` 不进入发布包，依赖由 `package-lock.json` 固定。**重新打包后，更新的 README 和示例才会进入新的包产物；现有 `prd-killer-0.1.0.tgz` 不会随源码修改自动更新。**
+
+### npm 发布前后如何使用
+
+源码方式不要求 npm 已发布。发布前生成本地 tarball 后，可验证包入口和安装：
 
 ```bash
 npm exec --yes --package "./prd-killer-0.1.0.tgz" -- prd-killer --version
-npm exec --yes --package "./prd-killer-0.1.0.tgz" -- prd-killer install --target "./output/package-smoke/skill"
+npm exec --yes --package "./prd-killer-0.1.0.tgz" -- prd-killer install --target "../prd-killer-package-smoke"
 ```
 
-打包包含Skill规则、参考、脱敏示例、图源和CLI；`node_modules`、生成的tarball及`output`不加入源码提交或发布包。依赖通过`package-lock.json`固定。
+以下命令仅适用于维护者已经将**本项目**以对应包名、版本发布到 npm 的情况；当前源码版本是 `0.1.0`，本说明不代表 npm 已发布：
 
-## 项目结构
-
-```text
-PRD-Killer/
-├─ README.md                  项目首页与使用说明
-├─ SKILL.md                   AI读取的分析与交付规则
-├─ package.json               npm依赖、命令及打包配置
-├─ bin/prd-killer.mjs          install / render CLI
-├─ scripts/render-diagrams.mjs 本地DOT渲染器
-├─ references/                分析、接口、清单及渲染参考
-├─ assets/                    脱敏演示图与可编辑源
-├─ agents/openai.yaml         Skill展示信息与默认提示
-└─ evals/                     行为案例、脱敏夹具及关键测试
+```bash
+npx --yes prd-killer@0.1.0 install
+npx --yes prd-killer@0.1.0 install --target "../prd-killer-installed"
+npx --yes prd-killer@0.1.0 render --input "./diagrams/source" --output "./diagrams"
 ```
 
-## 维护与发布
+也可以在确认包来源后安装为全局命令：
 
-本项目位于 [Skills-Share/PRD-Killer](https://github.com/BerLin-Justin/Skills-Share/tree/main/PRD-Killer)，npm配置已关联此仓库及子目录。发布npm前仍需核实包名及维护者身份。许可证尚未指定，`package.json`暂用`UNLICENSED`，由维护者决定授权方式。
+```bash
+npm install --global prd-killer@0.1.0
+prd-killer --help
+```
 
-确认发布信息后，先执行测试和打包检查，再由维护者自行登录和发布：
+没有 `postinstall` 自动复制行为，只有显式执行 `install` 子命令才安装 Skill 资源。仓库地址及 `PRD-Killer` 子目录已配置在 `package.json`；发布 npm 前仍需核实包名、维护者身份及许可证，当前配置为 `UNLICENSED`。需要发布时，由维护者登录并执行：
 
 ```bash
 npm login
 npm publish --access public
 ```
 
-GitHub源码与npm registry发布独立进行，提交源码、测试或本地打包不代表已经发布npm包。包配置和命令行为可参考[npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)、[npm pack](https://docs.npmjs.com/cli/v11/commands/npm-pack/)、[npm exec](https://docs.npmjs.com/cli/v11/commands/npm-exec/)。
+本地修改、测试和打包均不代表已上传 GitHub 或发布 npm。
+
+## 项目导航
+
+```text
+PRD-Killer/
+├─ README.md                  项目首页、使用说明与案例展示
+├─ SKILL.md                   AI 读取的分析与交付规则
+├─ package.json               运行要求、依赖、命令及打包配置
+├─ bin/prd-killer.mjs          install / render CLI
+├─ scripts/render-diagrams.mjs 本地 DOT 渲染器
+├─ references/                分析、接口、清单和渲染参考
+├─ assets/
+│  ├─ small-query-example/     小查询改动示例
+│  └─ visual-example/          完整结算链路示例
+├─ agents/openai.yaml         Skill 展示信息与默认提示
+└─ evals/                     行为案例、夹具及关键测试
+```
+
+项目说明统一维护在 `README.md`，安装与打包沿用该入口，案例随 `assets/` 一同携带。业务示例仅作分析方法参考，不将示例规则直接套到其他项目。
